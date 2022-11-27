@@ -82,7 +82,7 @@ public class TicTacToe {
 			System.out.println("Free space is available! you have "+numOfFreeSpaces+ " moves left");
 		}
 	}
-	private static void checkFirstPlayer()
+	public static void checkFirstPlayer()
 	{
 		int Head = 0;
 		double toss = Math.floor(Math.random()*10) % 2;
@@ -93,6 +93,20 @@ public class TicTacToe {
 		else
 		{
 			System.out.println("User starts to play first");
+		}
+	}
+
+	public static void winner()
+	{
+		if ((board[1] == userLetter && board[2] == userLetter && board[3] == userLetter) ||
+				(board[4] == userLetter && board[5] == userLetter && board[6] == userLetter) ||
+				(board[7] == userLetter && board[8] == userLetter && board[9] == userLetter) ||
+				(board[1] == userLetter && board[5] == userLetter && board[9] == userLetter) ||
+				(board[3] == userLetter && board[5] == userLetter && board[7] == userLetter))
+		{
+			showBoard();
+			System.out.println("Player win the game");
+			System.exit(0);
 		}
 	}
 }
