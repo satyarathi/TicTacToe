@@ -11,10 +11,15 @@ public class TicTacToe {
 	public static void main(String[] args) {
 		createEmptyBoard();
 		chooseLetter();
-		showBoard();
-		makeMove();
-	}
 
+		while(true) {
+			playerTurn();
+			computerTurn();
+			showBoard();
+			checkFreeSpace();
+			winner();
+		}
+	}
 	public static void createEmptyBoard() {
 		for (int i = 1; i < board.length; i++) {
 			board[i] = ' ';
@@ -37,27 +42,22 @@ public class TicTacToe {
 		System.out.println( board[7] + " | " + board[8] + " | " + board[9] );
 	}
 
-	public static void makeMove()
+	public static void playerTurn()
 	{
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Choose your location(1-9): ");
-		int position = scanner.nextInt();
-		if (position > 9 && position < 1)
+		int playerMove;
+		while (true)
 		{
-			System.err.println("Enter a valid location b/w 1 to 9");
-			makeMove();
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Choose your location(1-9): ");
+			playerMove = scanner.nextInt();
+			if (board[playerMove] == ' ')
+			{
+				break;
+			}
+
 		}
-		else if (board[position] != ' ')
-		{
-			System.err.println("You already chosen this! Enter a valid location");
-			makeMove();
-		}
-		else
-		{
-			board[position] = userLetter;
-			showBoard();
-			makeMove();
-		}
+		System.out.println("Player choose:: " + playerMove);
+		board[playerMove] = userLetter;
 	}
 
 	public static void checkFreeSpace()
@@ -108,6 +108,21 @@ public class TicTacToe {
 			System.out.println("Player win the game");
 			System.exit(0);
 		}
+	}
+	private static void computerTurn()
+	{
+		int computerMove;
+		while (true)
+		{
+			computerMove = (int) Math.floor(Math.random() * 10) % 9 + 1;
+			if (board[computerMove] == ' ')
+			{
+				break;
+			}
+
+		}
+		System.out.println("Computer choose:: " + computerMove);
+		board[computerMove] = computerLetter;
 	}
 }
 
