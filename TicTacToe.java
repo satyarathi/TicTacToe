@@ -28,7 +28,7 @@ public class TicTacToe {
 		computerLetter = (userLetter == 'X') ? 'O' : 'X';
 	}
 
-	private static void showBoard()
+	public static void showBoard()
 	{
 		System.out.println( board[1] + " | " + board[2] + " | " + board[3] );
 		System.out.println("----------");
@@ -37,7 +37,7 @@ public class TicTacToe {
 		System.out.println( board[7] + " | " + board[8] + " | " + board[9] );
 	}
 
-	private static void makeMove()
+	public static void makeMove()
 	{
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Choose your location(1-9): ");
@@ -60,7 +60,7 @@ public class TicTacToe {
 		}
 	}
 
-	private static void checkFreeSpace()
+	public static void checkFreeSpace()
 	{
 		boolean isSpaceAvailable = false;
 		int numOfFreeSpaces = 0;
@@ -82,6 +82,20 @@ public class TicTacToe {
 			System.out.println("Free space is available! you have "+numOfFreeSpaces+ " moves left");
 		}
 	}
+	private static void checkFirstPlayer()
+	{
+		int Head = 0;
+		double toss = Math.floor(Math.random()*10) % 2;
+		if ( toss == Head )
+		{
+			System.out.println("computer starts to play first");
+		}
+		else
+		{
+			System.out.println("User starts to play first");
+		}
+	}
 }
+
 
 
