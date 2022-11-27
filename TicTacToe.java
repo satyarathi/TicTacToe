@@ -10,9 +10,9 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		createEmptyBoard();
-		  chooseLetter();
-	        showBoard();
-	        makeMove();
+		chooseLetter();
+		showBoard();
+		makeMove();
 	}
 
 	public static void createEmptyBoard() {
@@ -36,30 +36,52 @@ public class TicTacToe {
 		System.out.println("----------");
 		System.out.println( board[7] + " | " + board[8] + " | " + board[9] );
 	}
-	
-	private static void makeMove()
-    {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Choose your location(1-9): ");
-        int position = scanner.nextInt();
-        if (position > 9 && position < 1)
-        {
-            System.err.println("Enter a valid location b/w 1 to 9");
-            makeMove();
-        }
-        else if (board[position] != ' ')
-        {
-            System.err.println("You already chosen this! Enter a valid location");
-            makeMove();
-        }
-        else
-        {
-            board[position] = userLetter;
-            showBoard();
-            makeMove();
-        }
-    }
 
+	private static void makeMove()
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Choose your location(1-9): ");
+		int position = scanner.nextInt();
+		if (position > 9 && position < 1)
+		{
+			System.err.println("Enter a valid location b/w 1 to 9");
+			makeMove();
+		}
+		else if (board[position] != ' ')
+		{
+			System.err.println("You already chosen this! Enter a valid location");
+			makeMove();
+		}
+		else
+		{
+			board[position] = userLetter;
+			showBoard();
+			makeMove();
+		}
+	}
+
+	private static void checkFreeSpace()
+	{
+		boolean isSpaceAvailable = false;
+		int numOfFreeSpaces = 0;
+		for(int index=1;index<board.length;index++)
+		{
+			if((board[index] == ' '))
+			{
+				isSpaceAvailable = true;
+				numOfFreeSpaces++;
+			}
+		}
+		if(isSpaceAvailable == false)
+		{
+			System.err.println("Board is full! You can't make another move");
+
+		}
+		else
+		{
+			System.out.println("Free space is available! you have "+numOfFreeSpaces+ " moves left");
+		}
+	}
 }
 
 
