@@ -10,6 +10,9 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		createEmptyBoard();
+		  chooseLetter();
+	        showBoard();
+	        makeMove();
 	}
 
 	public static void createEmptyBoard() {
@@ -33,7 +36,29 @@ public class TicTacToe {
 		System.out.println("----------");
 		System.out.println( board[7] + " | " + board[8] + " | " + board[9] );
 	}
-
+	
+	private static void makeMove()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose your location(1-9): ");
+        int position = scanner.nextInt();
+        if (position > 9 && position < 1)
+        {
+            System.err.println("Enter a valid location b/w 1 to 9");
+            makeMove();
+        }
+        else if (board[position] != ' ')
+        {
+            System.err.println("You already chosen this! Enter a valid location");
+            makeMove();
+        }
+        else
+        {
+            board[position] = userLetter;
+            showBoard();
+            makeMove();
+        }
+    }
 
 }
 
